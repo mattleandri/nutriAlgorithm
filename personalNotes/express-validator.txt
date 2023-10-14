@@ -1,0 +1,36 @@
+https://express-validator.github.io/docs/api/validation-chain/
+
+Express Validator es una libreria construida sobre Validator.js
+que nos brinda la posibilidad de hacer validaciones facilmente mediante middlewares
+
+1. Agg la/s validacion como un middleware en el endpoint debido.
+La sintaxys sera: check(<field>).ValidtaionChain
+
+    donde:
+        check es la funcion principal de la API de express-validator.
+        check analizara todo (headres,body,...). 
+        Por lo que para especificar cual queremos validar podemos reemplazar check por 
+        una funcion con el nombre de la parte de la request a validar.
+        ej: body() query() ... que son funciones iguales que check solo que verifican esa parte del HTTP request
+
+        field. Es el nombre del campo de la parte del HTTP seleccionado que queremos analizar.
+
+        ValidationChain: https://express-validator.github.io/docs/api/validation-chain
+        Contiene todos los validators, sanitizers  y utility methods (?) (quizas se refierza a los modificadores. ! nos permites mod la req condicionalmente)
+        Podemos crear nuestro middleware de validacion personalizado mediante Custon(fn)
+        ->  The field value will be valid if:
+                The custom validator returns truthy; or
+                The custom validator returns a promise that resolves.
+            If the custom validator returns falsy, a promise that rejects, or if the function throws, then the value will be considered invalid.
+
+
+2. Manejo del resultado: express-validator no maneja los errores en caso de que alguna validacion falle. 
+    Deberemos hacer aplicando como ultimo middleware previo al controlador en si la verificacion de los resultados mediante validation Result:
+
+        const result = validationResult(req,res,next);        
+        if (result.isEmpty()) next()
+        else res.send({ errors: result.array() })
+
+
+  
+
