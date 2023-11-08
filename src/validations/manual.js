@@ -21,7 +21,7 @@ export const validateManualFood = [
     body('[*].f','f mut be Positive Number').isFloat({min:0}),
     body('[*].kcal','kcal mut be Positive Number').isFloat({min:0}),
     body('[*].type','tpye mut be "w" (meaured in grams) | "u" measured in unitys' ).isIn(['w','u']),
-    body('[*].category','category muts be "c" (carbos) || "p" (proteins) || "f" (fats)  ').isIn(['c','p','f']),
+    body('[*].category','category muts be "c" (carbos) || "p" (proteins) || "f" (fats) || "m" (micronutrients) ').isIn(['c','p','f','m']),
 
     
     // custom( (value , {req})=>{
