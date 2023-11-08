@@ -37,7 +37,7 @@ const options = {
                     f:{type:"number", example: 0.3},
                     kcal:{type:"number" , example:129},
                     type:{type:"string", example: 'w,', description: "Must be 'w' (weight) || 'u' (unity)"},
-                    category:{type:"string", example:'c' , description: "Must be 'c' (carbs) || 'p' (protein) || 'f' (fats) "}
+                    category:{type:"string", example:'c' , description: "Must be 'c' (carbs) || 'p' (protein) || 'f' (fats) || 'm' (micronutrients) "}
                 }
             },
             Macros:{
@@ -54,7 +54,6 @@ const options = {
     apis: [`${join(ubicacion,'../routes/*.js')}`], // files containing annotations as above
   };
 
-  console.log(options.apis)
     
 
 export const swaggerDocument = swaggerJSDoc(options)
